@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <link
+      rel="stylesheet"
+      href=" {{ url_for('static', filename='css/style.css') }} "
+    />
+  </head>
+  <body>
+    <header>
+      <nav class="opciones">
+        <div>
+          <a href="/registro" style="color: burlywood"><b>Registro del alumno</b></a>
+        </div>
+        <div>
+          <a href="/buscar" style="color: burlywood"><b>Buscar Alunmos</b></a>
+        </div>
+        <div>
+          <a href="/buscar" style="color: burlywood"><b>Búsqueda Individual</b></a>
+        </div>
+        <div>
+          <a href="" style="color: burlywood"><b>Iniciar Sesión</b></a>
+        </div>
+      </nav>
+    </header>
+    <br />
+    <br />
+
+
+    <div class="titulo">
+      <h1>Funcionalidades Principales de la base de datos</h1>
+    </div>
+    <br />
+    <br />
+
+    <div class="registro">
+      <h3>Registro del alumno ✅</h3>
+      <ol>
+        <li>
+          Formulario de Registro: Los usuarios pueden llenar un formulario con
+          información personal, académica y de contacto.
+        </li>
+        <br />
+        <li>
+          Validación de Datos: El sistema valida que los datos ingresados sean
+          correctos y completos antes de guardarlos en la base de datos.
+        </li>
+        <br />
+        <li>
+          Confirmación de Registro: Una vez completado el registro, se envía una
+          confirmación por correo electrónico al alumno.
+        </li>
+      </ol>
+    </div>
+
+    <br />
+    <div class="buscar-alumnos">
+      <h3>Buscar Alunmos ✅</h3>
+
+      <ol>
+        <li>
+          Confirmación de Registro: Una vez completado el registro, se envía una
+          confirmación por correo electrónico al alumno.
+        </li>
+        <br />
+        <li>
+          Filtros Avanzados: Opciones para refinar las búsquedas por parámetros
+          adicionales como fecha de inscripción, estado académico, entre otros.
+        </li>
+      </ol>
+    </div>
+
+    <br />
+    <div class="busqueda">
+      <h3>Búsqueda Individual ✅</h3>
+      <ol>
+        <li>
+          Perfil de Alumno: Al seleccionar un alumno específico de los
+          resultados de búsqueda, se muestra un perfil detallado con toda la
+          información relevante.
+        </li>
+        <br />
+        <li>
+          Historial Académico: Incluye el historial académico del alumno, con
+          detalles sobre cursos tomados, calificaciones, y progreso.
+        </li>
+      </ol>
+    </div>
+
+    <br />
+    <div class="sesion">
+      <h3>Iniciar Sesión ✅</h3>
+      <ol>
+        <li>
+          Autenticación: Los usuarios deben ingresar sus credenciales (nombre de
+          usuario y contraseña) para acceder al sistema.
+        </li>
+        <br />
+        <li>
+          Recuperación de Contraseña: Funcionalidad para recuperar o restablecer
+          la contraseña en caso de olvido.
+        </li>
+        <br />
+        <li>
+          Roles y Permisos: Dependiendo del rol del usuario (administrador,
+          profesor, alumno), se otorgan diferentes niveles de acceso y
+          funcionalidades dentro del sistema.
+        </li>
+      </ol>
+    </div>
+
+    <footer></footer>
+  </body>
+</html>
