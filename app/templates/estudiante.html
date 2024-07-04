@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+<html>
+  <form>
+    <h3 class="text-center">&bull; Datos del alumno buscado &bull;</h3>
+    {% block title %} Alumno {{estudiante.apellido}} {% endblock %} {% block body %}
+    <div class="col-3 m-auto">
+      <ul class="list-group text-center">
+        <li class="list-group-item"><b>ID: </b> {{ estudiante.padron }}</li>
+        <li class="list-group-item"><b>Apellido: </b> {{ estudiante.apellido }}</li>
+      </ul>
+    </div>
+    {% endblock %}
+  </form>
+</html>

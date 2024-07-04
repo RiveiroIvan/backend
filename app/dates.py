@@ -1,11 +1,16 @@
 class Dates:
-    def __init__(self, R_usuario, R_email, R_clave):
-        self.R_usuario = R_usuario
-        self.R_email = R_email
-        self.R_clave = R_clave
+    def __init__(self, nombre,apellido, email, DNI, padron):
+        self.nombre = nombre
+        self.apellido = apellido
+        self.email = email
+        self.DNI = DNI
+        self.padron = padron
         
-    def get_usuario(self):
-        return self.R_usuario
+    def get_nombre(self):
+        return self.nombre
         
-    def get_email(self):
-        return self.R_email
+    def get_apellido(self):
+        return self.apellido
+    
+    def get_padron(self):
+        return self.padron

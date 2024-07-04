@@ -3,6 +3,8 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from buscarAlumno import buscar_alumno
 from registroAlumno import Registro_Alumno
+from dates import Dates
+from config import Config
 
 app = Flask(__name__)
 app.config.from_object('config.Config')
@@ -12,7 +14,6 @@ migrate = Migrate(app, db)
 app.config['SECRET_KEY'] = '12ike90123ur0j209'
 
 
-from dates import Dates
 # from config import Config
 # from static import models
 # from init import SQLAlchemy
@@ -39,36 +40,48 @@ def busqueda():
     if request.method == 'POST':
         if busqueda.validate_on_submit():
             padron = busqueda.padron.data
-            return redirect(url_for("buscarAlumno", padron=padron))
+            return redirect(url_for("estudiante", padron=padron))
         else:
-            flash("Se debe ingresar un padrón")
+            flash("Se debe ingresar un ID")
     return render_template("buscarAlumno.html", form=busqueda)
 
 @app.route('/buscar/<int:padron>', methods=['GET', 'POST'])
 def identificar(padron):
-    identificar_estudiante = next((estudiante for estudiante in g.estudiantes if estudiante.patron == padron), None)
-    if identificar_estudiante is None:
-        return abort(404)
-    return render_template('studente.html', estudiante=identificar_estudiante)
+    identificar_estudiante = next((estudiante for estudiante in g.estudiantes if estudiante.padron == padron), None)
+    if identificar_estudiante:
+        return render_template('estudiante.html', estudiante=identificar_estudiante)
 
-@app.route('/studiantes')
+@app.route('/estudiantes')
 def estudiantes():
-    return render_template('estuantes.html', estudiantes=g.estudiantes)
+    return render_template('estudiantes.html', estudiantes=g.estudiantes)
 
 @app.route("/sesion", methods=['GET', 'POST'])
 def sesion():
     if request.method == 'POST':
-        I_email = request.form['I_correo']
-        I_clave = request.form['I_clave']
+        nombre = request.form['nombre']
+        apellido = request.form['apellido']
+        email = request.form['email']
+        DNI = request.form['DNI']
+        padron = request.form[padron]
         
-        user = Dates.query.filter_by(email=I_email, clave=I_clave).first()
-        
+        user = Dates.query.filter_by(nombre=nombre, apellido=apellido, email=email, DNI=DNI, padron=padron).first()
+        # user = Dates(nombre=nombre, apellido=apellido, email=email, DNI=DNI)
         if user:
             flash('Inicio de sesión exitoso')
             return redirect(url_for('escuela'))
         else:
-            flash('Correo o contraseña incorrectos')
-    return render_template('I.sesion.html')
+            # flash('Correo o contraseña incorrectos')
+            return redirect(abort(404))
+    return render_template('registro.html')
+
+@app.before_request
+def lista_alunmos():
+    estudiante_1 = Dates("Lautaro", "Montes", 'Ejemplo1@gmail.com', 123, padron = 1)
+    estudiante_2 = Dates("Juan", "Rodriguez", 'Ejemplo2@gmail.com', 112320, padron = 2)
+    estudiante_3 = Dates("Atonio", "Gutierrez", 'Ejemplo3@gmail.com', 112321, padron = 3)
+    estudiante_4 = Dates("Sebastian", "Cuevas", 'Ejemplo4@gmail.com', 112324, padron = 4)
+
+    g.estudiantes = [estudiante_1, estudiante_2, estudiante_3, estudiante_4]
 
 if __name__ == "__main__":
     app.run(debug=True)
