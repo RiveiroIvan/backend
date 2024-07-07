@@ -62,10 +62,10 @@ def sesion():
         apellido = request.form['apellido']
         email = request.form['email']
         DNI = request.form['DNI']
-        padron = request.form[padron]
+        # padron = request.form['padron']
         
-        user = Dates.query.filter_by(nombre=nombre, apellido=apellido, email=email, DNI=DNI, padron=padron).first()
-        # user = Dates(nombre=nombre, apellido=apellido, email=email, DNI=DNI)
+        # user = Dates.query.filter_by(nombre=nombre, apellido=apellido, email=email, DNI=DNI).first()
+        user = Dates(nombre=nombre, apellido=apellido, email=email, DNI=DNI)
         if user:
             flash('Inicio de sesión exitoso')
             return redirect(url_for('escuela'))
@@ -76,10 +76,10 @@ def sesion():
 
 @app.before_request
 def lista_alunmos():
-    estudiante_1 = Dates("Lautaro", "Montes", 'Ejemplo1@gmail.com', 123, padron = 1)
-    estudiante_2 = Dates("Juan", "Rodriguez", 'Ejemplo2@gmail.com', 112320, padron = 2)
-    estudiante_3 = Dates("Atonio", "Gutierrez", 'Ejemplo3@gmail.com', 112321, padron = 3)
-    estudiante_4 = Dates("Sebastian", "Cuevas", 'Ejemplo4@gmail.com', 112324, padron = 4)
+    estudiante_1 = Dates("Lautaro", "Montes", 'Ejemplo1@gmail.com', 123)
+    estudiante_2 = Dates("Juan", "Rodriguez", 'Ejemplo2@gmail.com', 112320)
+    estudiante_3 = Dates("Atonio", "Gutierrez", 'Ejemplo3@gmail.com', 112321)
+    estudiante_4 = Dates("Sebastian", "Cuevas", 'Ejemplo4@gmail.com', 112324)
 
     g.estudiantes = [estudiante_1, estudiante_2, estudiante_3, estudiante_4]
 
